@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo2-java-kubernetes
+  namespace: demo2-java-kubernetes
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: demo2-java-kubernetes.kubops.tech
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: demo2-java-kubernetes-service
+                port:
+                  number: 80
+            path: /
+  # This section is only required if TLS is to be enabled for the Ingress
+  tls:
+    - hosts:
+      - demo2-java-kubernetes.kubops.tech
+      secretName: demo2-java-kubernetes-tls
+
