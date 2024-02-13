@@ -20,7 +20,7 @@ spec:
       - name: demo2-java-kubernetes
         image: abenhlal/demo2-java-kubernetes:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         livenessProbe:
           httpGet:
             path: /health
